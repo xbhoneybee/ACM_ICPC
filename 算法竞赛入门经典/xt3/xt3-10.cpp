@@ -57,4 +57,5 @@ int main()
    }
 	return 0;
 }
-//uva1587：
+//uva1587
+//learn the thinking from the internet
