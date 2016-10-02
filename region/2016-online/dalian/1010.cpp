@@ -23,14 +23,15 @@ using namespace std;
 //这道题比赛时不知道怎么把最坏情况时间从O(n^2)的dfs降低
 //有很多种解法 树状数组/线段树+离散化 | 树堆Treap
 //都是利用优先级排序后log查询满足k/a[i]数量
-//treap 解法：
-//树状数组解法：重点在如何将tree 依照权值变成数组对待
+//树状数组解法：重点在如何将tree 依照权值变成数组对待,然后每次按val在对应的位置上+1
+//离散化后如何保证k/a[i]也一起离散化
+
 const int N=100005;
-int c[N<<1];//开2倍？？？
+int c[N<<1];//开2倍 保存a[i] 和k/a[i];
 void add(int i,int val,int n)//将第i个元素增加val注意i不可为零
 {
      while(i<=n)//n为所开数组上界
-     {          //注意这里新加变量n？？？？
+     {          //注意这里新加变量n减少操作范围
          c[i]+=val;
          i+=lowbit(i);
      }
@@ -45,15 +46,15 @@ int sum(int i)//求前i项和
      }
      return s;
 }
-LL n,k,ans,a[N<<1];//*2???
-int xin;//???
+LL n,k,ans,a[N<<1];
+int xin;
 vector<int> v[N];
-int p[N<<1];//??
+int p[N<<1];
 
-void dfs(int rt)//??
+void dfs(int rt)
 {
     int pos;
-    pos=a[rt+n];//??
+    pos=a[rt+n];//对应k/a[rt]的val
     ans+=sum(pos);
     add(a[rt],1,xin);
     for(int i=0;i<v[rt].size();i++)
@@ -79,23 +80,25 @@ int main()
         for(int i=1;i<=n;i++)
         {
             scanf("%I64d",a+i);
-            if(a[i]==0) a[n+i]=inf;
-            else a[n+i]=k/a[i];
+            if(a[i]==0) a[n+i]=inf;//当a[i]为0 任何祖先都满足条件 令a[n+i]=inf;
+            else a[n+i]=k/a[i];//对每个a[i]有一个对应的最大祖先权值
             p[i]=i;
             p[n+i]=n+i;
         }
         sort(p+1,p+n+n+1,cmp);  //离散化
-        xin=0;
-        int pre=-1;
-        for(int i=1;i<=2*n;i++)
-        {
-            if(a[p[i]]>pre)
-            {
+        xin=0;                  //并且将a[i]的值减小
+        int pre=-1;             //
+        for(int i=1;i<=2*n;i++) //
+        {                       //
+            if(a[p[i]]>pre)     //
+            {                   //
                 pre=a[p[i]];a[p[i]]=++xin;
             }else {
                 pre=a[p[i]];a[p[i]]=xin;
             }
-        }
+        }//以上均是离散化
+        //for(int i=1;i<=n*2;i++)
+          //  cout<<a[i]<<' ';
         memset(f,0,sizeof f);
         for(int i=1;i<n;i++)
         {
