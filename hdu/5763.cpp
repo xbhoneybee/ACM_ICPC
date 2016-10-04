@@ -16,9 +16,7 @@
 #define iosfalse ios::sync_with_stdio(false);
 using namespace std;
 
-
-// G  dp +kmp
-int Next[100005];//ÓÅ»¯ÇónextÊı×é·½·¨
+int Next[100005];//ä¼˜åŒ–æ±‚nextæ•°ç»„æ–¹æ³•
 int zero[100005];
 void getNext(char b[],int m)
 {
@@ -53,8 +51,8 @@ void KMP_Index(char a[],char b[])
             i++;j++;
         }else j=Next[j];
 
-    if(j==m){  //Ã¿´ÎÆ¥ÅäÒ»¸ö×ÖÄ¸j++ ´ËÊ±jÎªÆ¥Åä×ÖÄ¸ÏÂÒ»Î» ÈôÎªm
-    zero[i]=1;//Æ¥ÅäÍêµÄÏÂÒ»Î»·Å1 ±íÊ¾ÏÂ±ê´Ó1¿ªÊ¼µÄÆ¥ÅäÍê·Å1
+    if(j==m){  //æ¯æ¬¡åŒ¹é…ä¸€ä¸ªå­—æ¯j++ æ­¤æ—¶jä¸ºåŒ¹é…å­—æ¯ä¸‹ä¸€ä½ è‹¥ä¸ºm
+    zero[i]=1;//åŒ¹é…å®Œçš„ä¸‹ä¸€ä½æ”¾1 è¡¨ç¤ºä¸‹æ ‡ä»1å¼€å§‹çš„åŒ¹é…å®Œæ”¾1
     j=Next[j];
     }
     }
@@ -81,7 +79,7 @@ int main()
         int m=strlen(sb);
         dp[0]=1;
 
-        for(int i=1;i<=len;i++)  //ÏÂ±ê´Ó1 ¿ªÊ¼¼ÆËã
+        for(int i=1;i<=len;i++)  //ä¸‹æ ‡ä»1 å¼€å§‹è®¡ç®—
         {
             dp[i]=dp[i-1];
             if(zero[i]==1)
