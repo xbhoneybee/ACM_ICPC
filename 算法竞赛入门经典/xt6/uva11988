@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+#include<cstdio>
+#include<cstdlib>
+#include<cstring>
+#include<string>
+#include<iostream>
+#include<algorithm>
+#include<queue>
+#include<cmath>
+#include<stack>
+#include<set>
+#include<vector>
+#include<map>
+#include<sstream>
+#define ll long long
+#define LL long long
+#define inf 100000000
+#define iosfalse ios::sync_with_stdio(false);
+#define lowbit(x) x&-x
+using namespace std;
+
+
+///11988 链表
+
+int main()
+{
+    string str;
+    while(cin>>str)
+    {
+        str=" "+str;
+        int next[100005]={0},cur=0,last=0;//光标位于cur号字符后面
+        int len=str.size()-1;
+        for(int i=1;i<=len;i++)
+        {
+            char ch=str[i];
+            if(ch=='[') cur=0;
+            else if(ch==']') cur=last;
+            else {
+                //每次添加一个字符都看作是一次插入
+                next[i]=next[cur];//
+                next[cur]=i;//
+                if(cur==last) last=i;//
+                cur=i;//
+            }
+        }
+        for(int i=next[0];i!=0;i=next[i])
+            printf("%c",str[i]);
+        printf("\n");
+    }
+    return 0;
+}
