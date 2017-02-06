@@ -1,0 +1,63 @@
+#include <bits/stdc++.h>
+#include<cstdio>
+#include<cstdlib>
+#include<cstring>
+#include<string>
+#include<iostream>
+#include<algorithm>
+#include<queue>
+#include<cmath>
+#include<stack>
+#include<set>
+#include<vector>
+#include<map>
+#include<sstream>
+#define ll long long
+#define LL long long
+#define inf 100000000
+#define iosfalse ios::sync_with_stdio(false);
+#define lowbit(x) x&-x
+using namespace std;
+
+///uva 514 栈的理解
+
+int main()
+{
+    int n;
+    while(cin>>n)
+    {
+        if(n==0)
+            break;
+        int bk;
+        while(cin>>bk){
+        if(bk==0)
+        {
+            cout<<endl;
+            break;
+        }else
+        {
+        int a[1001]={0};
+        a[1]=bk;
+        for(int i=2;i<=n;i++)
+            cin>>a[i];
+        stack<int>stk;
+        int aid=1,num=1;
+        int ans=1;
+        while(aid<=n)
+        {
+            if(num==a[aid]){num++;aid++;}
+            else if(!stk.empty()&&stk.top()==a[aid])
+            {
+                stk.pop();aid++;
+            }else if(num<=n)
+            stk.push(num++);
+            else {ans=0;break;}
+        }
+        if(ans==0)
+            cout<<"No"<<endl;
+        else cout<<"Yes"<<endl;
+        }
+      }
+    }
+    return 0;
+}
