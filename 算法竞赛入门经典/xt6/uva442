@@ -1,0 +1,80 @@
+#include <bits/stdc++.h>
+#include<cstdio>
+#include<cstdlib>
+#include<cstring>
+#include<string>
+#include<iostream>
+#include<algorithm>
+#include<queue>
+#include<cmath>
+#include<stack>
+#include<set>
+#include<vector>
+#include<map>
+#include<sstream>
+#define ll long long
+#define LL long long
+#define inf 100000000
+#define iosfalse ios::sync_with_stdio(false);
+#define lowbit(x) x&-x
+using namespace std;
+
+//442栈
+
+int main()
+{
+    int n;
+    cin>>n;
+    map<char,pair<int,int> >mp;
+    for(int i=0;i<n;i++)
+    {
+        int x,y;
+        char name;
+        cin>>name>>x>>y;
+        mp[name]=make_pair(x,y);
+    }
+    string exp;
+    while(cin>>exp)
+    {
+        int matrix=0;
+        LL mid=0;
+        stack<pair<int,int> >stck;
+        exp=exp+string(exp.size(),')');
+        for(int i=0;i<exp.size();i++)
+            {
+                if(exp[i]==')')
+                {
+                    pair<int,int>p1,p2;
+                    if(stck.size()==1)
+                    {
+                        p1=stck.top();
+                        stck.pop();
+                        long long ans=mid;
+                        if(matrix<=1)
+                            ans=0;
+                        cout<<ans<<endl;
+                    }else if(stck.size()>1){
+                        p2=stck.top();
+                        stck.pop();
+                        p1=stck.top();
+                        stck.pop();
+                        if(p1.second==p2.first)
+                            {
+                                mid+=(p1.second*p1.first*p2.second);
+                                stck.push(make_pair(p1.first,p2.second));
+                            }
+                        else
+                        {
+                            cout<<"error"<<endl;
+                            break;
+                        }
+                    }
+                }else if(exp[i]!='(')
+                {
+                    stck.push(mp[exp[i]]);
+                    matrix++;
+                }
+            }
+    }
+    return 0;
+}
