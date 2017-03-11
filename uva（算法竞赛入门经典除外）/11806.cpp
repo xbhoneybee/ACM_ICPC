@@ -1,3 +1,24 @@
+#include <bits/stdc++.h>
+#include<cstdio>
+#include<cstdlib>
+#include<cstring>
+#include<string>
+#include<iostream>1
+#include<algorithm>
+#include<queue>
+#include<cmath>
+#include<stack>
+#include<set>
+#include<vector>
+#include<map>
+#include<sstream>
+#define ll long long
+#define LL long long
+#define iosfalse ios::sync_with_stdio(false);
+#define lowbit(x) x&-x
+using namespace std;
+
+
 const int mmd= 1000007;// md这不是个质数29 * 34483 用加法求C
 int C[550][550];
 ll force(ll n,ll m,ll k)
