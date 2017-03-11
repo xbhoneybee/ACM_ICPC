@@ -1,1 +1,4 @@
 ﻿输出小数不要用cout double 会自动保留，要printf %.10f
+
+
+const ll mmd= 1000007; md这不是个质数29 * 34483
