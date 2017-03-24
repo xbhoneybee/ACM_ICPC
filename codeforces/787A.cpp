@@ -1,3 +1,4 @@
+﻿//#include <bits/stdc++.h>
 #include<cstdio>
 #include<cstdlib>
 #include<cstring>
@@ -19,6 +20,7 @@
 using namespace std;
 
 
+//ax-by=c 只能暴力
 int main()
 {
 
@@ -31,6 +33,7 @@ int main()
     }
     for(int i=0;a*i+b-d<1e8;i++)
     {
+        if(a*i+b-d>=0&&(a*i+b-d)%c==0)//wa 点 必须>=0
             {
                 cout<<a*i+b<<endl;
                 return 0;
