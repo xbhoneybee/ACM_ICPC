@@ -1,4 +1,20 @@
 # C语言
+### char
+全局变量char a[100];
+
+(int)a[0]=0;
+
+局部变量随机
+#### 输入输出
+gets(char *) 读一行
+#### math
+const double e = 2.71828；
+
+const double PI=acos（-1.0）；
+
+log 函数默认以e为底
+
+exp（x） 函数表示e的x次幂
 #### 文件读写
 重新定向：在main函数入口加入
 ```
@@ -6,9 +22,10 @@ freopen("input.txt","r",stdin);
 freopen("output.txt","w",stdout);
 ```
 #### 输入输出
-
+printf("%*s", len, str) 这时 printf 额外接受一个参数作为域宽。如果 str 的长度小于 len ，会用空格在左边使长度补足。
 #### cstdlib
 rand()返回0到32767之间的一个整数
+
 srand(time(NULL));在程序开始执行一次以当前时间初始化随机种子，确保每次程序运行使用的是不同套的随机数。 
 
 #### 进制 
@@ -18,6 +35,20 @@ srand(time(NULL));在程序开始执行一次以当前时间初始化随机种�
 # c++
 #### 输入输出
 getline(cin,str);在使用时前面如果刚输入数字并回车会吃掉回车产生错误，此时要多用一次getline
+##### stingstream
+```
+string line,word;
+while(getline(cin,line))
+{
+   stringstream stream(line);
+   while(stream>>word)
+   {
+       //实现了每次读一行，从每行中读一个单词
+   }
+}
+int x;
+while(stream>>x) arr[n++]=x;
+```
 #### goto
 ```
 label :
@@ -27,6 +58,12 @@ goto label;
 ## C++  STL
 ### 库函数
 #### sort
+sort 自定义比较函数规则
+
+return true ; 排序为a,b;
+
+return false；排序为b,a;
+
 sort处理vector
 ```
 sort(v.begin(), v.end(),less<int>());//升
@@ -35,6 +72,7 @@ sort(v.begin(), v.end(),greater<int>());//降
 lower_bound(begin,end,val)
 
 返回大于或等于val的第一个位置,一般要-begin才是其在数组中的下标值
+upper >val
 ### string
 string.substr(start,length);
 
@@ -111,7 +149,9 @@ return t1.z < t2.z; // 按照z 的顺序来决定t1 和t2 的顺序
 }
 ```
 ###### 复杂度
-push pop 都是 O（N）；
+实现 堆 
+
+push pop 都是 O（logN）；
 
 ### map
  map<string,string>::iterator it;
@@ -151,3 +191,10 @@ que.pop_front();弹出队首元素 不返回值
  insert   erase  O(1)
  
  sort O (nlgn)(lg n) 
+ 
+ ### multiset
+ 用法同set，但是允许多个重复元素
+ multiset<int,greater<int>> st;
+ 从大到小排。
+ 注意multiset 的erase(0)会将set内的所有0
+删去，只删一个用erase(set.find(0))
