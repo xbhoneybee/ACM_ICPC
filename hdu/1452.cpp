@@ -11,11 +11,10 @@
 #include <stack>
 #define inf 1000000000000000000
 #define ll long long
-#define mod 1000000007
+#define mod 29
 #define iosfalse ios::sync_with_stdio(false);
 using namespace std;
-const int MAXN=1024;
-
+const int MAXN=1025;
 
 int PowerMod(int a, int b, int c)
 {
