@@ -101,3 +101,11 @@ int upper_bound(int *data, int size, int value)
 for(i,j)每个点遍历一遍，判断满足条件
 
 i+size<n|j+size<n|i+size&&j+size<n|i+size&&j-size<n
+
+### 枚举
+```
+do{
+    
+}while(next_permutation(a,a+n));
+```
+或者状压 for 
