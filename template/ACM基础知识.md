@@ -108,4 +108,20 @@ do{
     
 }while(next_permutation(a,a+n));
 ```
-或者状压 for 
+或者状压 for
+
+### 尺取法
+```
+    int l = 0,r= 0,sum = 0,ans=n+1;
+        while(1){
+            while(r < n && sum<s){
+                sum+=a[r];
+                r++;
+            }
+            if(sum < s){
+                break;  
+            }
+            ans=min(r-l,ans);
+            sum -= a[l++];
+        }
+```

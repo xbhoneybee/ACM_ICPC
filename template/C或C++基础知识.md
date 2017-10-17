@@ -7,6 +7,23 @@
 局部变量随机
 #### 输入输出
 gets(char *) 读一行
+
+int a;
+
+scanf("%x",a);
+以16进制读入。
+
+char s[10];
+
+int tem;
+
+scanf("%s",s);
+
+sscanf(s,"%x",&tem);
+
+在字符串s中读入int tem
+
+输出% printf("%%");
 #### math
 const double e = 2.71828；
 
@@ -72,6 +89,10 @@ sort(v.begin(), v.end(),greater<int>());//降
 lower_bound(begin,end,val)
 
 返回大于或等于val的第一个位置,一般要-begin才是其在数组中的下标值
+
+注意对于vector等下标访问的数组结构lower_bound的时间复杂度为log N 
+
+对于set，map 等树形数据结构则为O N，必须调用set 内部的lower_bound 才是log N 复杂度
 upper >val
 ### string
 string.substr(start,length);
@@ -144,7 +165,7 @@ public:
 int x, y, z;
 T(int a, int b, int c):x(a), y(b), z(c){}
 };
-bool operator < (const T &t1, const T &t2){
+friend bool operator < (const T &t1, const T &t2){
 return t1.z < t2.z; // 按照z 的顺序来决定t1 和t2 的顺序
 }
 ```
@@ -198,3 +219,88 @@ que.pop_front();弹出队首元素 不返回值
  从大到小排。
  注意multiset 的erase(0)会将set内的所有0
 删去，只删一个用erase(set.find(0))
+
+### bitset
+复杂度O N/64
+
+#include <bitset>
+
+初始化
+
+bitset<32> bitvec; //32位，全为0。 <> 内填入一个常量
+
+0-31 低位到高位
+
+bitset<n> b;
+
+b有n位，每位都为0
+
+bitset<n> b(u);
+
+b是unsigned long型u的一个副本
+
+bitset<n> b(s);
+
+b是string对象s中含有的位串的副本
+
+bitset<n> b(s, pos, n);
+
+b是s中从位置pos开始的n个位的副本
+
+b.any()
+
+b中是否存在置为1的二进制位？
+
+b.none()
+
+b中不存在置为1的二进制位吗？
+
+b.count()
+
+b中置为1的二进制位的个数
+
+b.size()
+
+b中二进制位的个数
+
+b[pos]
+
+访问b中在pos处的二进制位
+
+b.test(pos)
+
+b中在pos处的二进制位是否为1？
+
+b.set()
+
+把b中所有二进制位都置为1
+
+b.set(pos)
+
+把b中在pos处的二进制位置为1
+
+b.reset()
+
+把b中所有二进制位都置为0
+
+b.reset(pos)
+
+把b中在pos处的二进制位置为0
+
+b.flip()
+
+把b中所有二进制位逐位取反
+
+b.flip(pos)
+
+把b中在pos处的二进制位取反
+
+b.to_ulong()
+
+用b中同样的二进制位返回一个unsigned long值
+
+os << b
+
+把b中的位集输出到os流
+
+bitset 还可以进行位运算 & | ^
